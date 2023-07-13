@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: sso_team
+      POSTGRES_PASSWORD: sso_pwd
+      POSTGRES_DB: sso_db
+    networks:
+      - ssonet
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8080:8000
+    depends_on:
+      - db
+    networks:
+      - ssonet
+    environment:
+      DATABASE_NAME: sso_db
+      DATABASE_USER: sso_team
+      DATABASE_PASSWORD: sso_pwd
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      SECRET_KEY: YOUR_ACTUAL_KEY
+
+networks:
+  ssonet:
+    driver: bridge
