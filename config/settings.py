@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv("DEBUG") == "True" else False
 
-HOST_URL = os.getenv("HOST_URL", "127.0.0.1, localhost")
+HOST_URL = os.getenv("HOST_URL", "127.0.0.1, db")
 ALLOWED_HOSTS = HOST_URL.replace(" ", "").split(",")
 
 # Application definition
@@ -92,8 +92,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": postgres_uri.path[1:] or os.getenv("DATABASE_NAME"),
         "USER": postgres_uri.username or os.getenv("DATABASE_USER"),
-        "PASSWORD": postgres_uri.password or os.getenv("DATABASE_PASSWORD"),
-        "HOST": postgres_uri.hostname or os.getenv("DATABASE_HOST"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST"),
         "PORT": postgres_uri.port or os.getenv("DATABASE_PORT"),
     }
 }
