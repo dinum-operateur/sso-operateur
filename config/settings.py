@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "dsfr_holder",
-    "secretariat",
+    "sso",
 ]
 
 MIDDLEWARE = [
@@ -97,7 +97,7 @@ DATABASES = {
         "PORT": postgres_uri.port or os.getenv("DATABASE_PORT"),
     }
 }
-AUTH_USER_MODEL = "secretariat.User"
+AUTH_USER_MODEL = "sso.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

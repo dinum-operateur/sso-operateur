@@ -1,8 +1,8 @@
-# Secrétariat opérateur
+# SSO opérateur
 
 ## Introduction
 
-Ce produit contiendra des utilitaires pour les agents et presta de l'opérateur DINUM.
+Ce produit vise à connecter automatiquement les utilisateurs de la suite numérique collaborative de la DINUM.
 
 ## Démarrage rapide après installation
 
@@ -38,9 +38,9 @@ psql
 Dans l'invite de commande psql, vous pouvez à présent créer la base de données et l'utilisateur :
 
 ```sql
-CREATE USER secretariat_team PASSWORD 'secretariat_pwd';
-CREATE DATABASE secretariat_db OWNER secretariat_team;
-ALTER USER secretariat_team CREATEDB;
+CREATE USER sso_team PASSWORD 'sso_pwd';
+CREATE DATABASE sso_db OWNER sso_team;
+ALTER USER sso_team CREATEDB;
 ```
 
 Vous pouvez à présent quitter l'invite de commande psql.

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from secretariat import views
+from sso import views
 
 urlpatterns = [
     path("", views.view_index, name="index"),
