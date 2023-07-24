@@ -28,3 +28,15 @@ class TestStaticPages(TestCase):
     def test_a11y_response_contains_title(self):
         response = self.client.get("/accessibilite/")
         self.assertContains(response, "Déclaration d’accessibilité")
+
+
+class TestDSFR(TestCase):
+    def test_dsfr_is_correctly_loaded(self):
+        response = self.client.get("/")
+        self.assertTemplateUsed(response, "dsfr/global_css.html")
+        self.assertTemplateUsed(response, "dsfr/favicon.html")
+        self.assertTemplateUsed(response, "dsfr/skiplinks.html")
+        self.assertTemplateUsed(response, "dsfr/header.html")
+        self.assertTemplateUsed(response, "dsfr/theme_modale.html")
+        self.assertTemplateUsed(response, "dsfr/breadcrumb.html")
+        self.assertTemplateUsed(response, "dsfr/global_js.html")
