@@ -89,7 +89,7 @@ D'abord, rendez-vous dans l'admin Django, section OpenID Connect Provider, pour 
 
 Sauvegardez, puis notez le client ID + le client secret que vous donne la page.
 
-Exemple de configuration Docker-compose pour que le pad discute avec votre sso-operateur (:warning: complétez le client ID et le client secret) : 
+Exemple de configuration Docker-compose pour que le pad discute avec votre sso-operateur (:warning: complétez `CMD_OAUTH2_CLIENT_ID` et `CMD_OAUTH2_CLIENT_SECRET`) : 
 
 ```yaml
 version: '3'
@@ -104,11 +104,12 @@ services:
       - CMD_OAUTH2_BASEURL=http://localhost:1234
       - CMD_OAUTH2_USER_PROFILE_URL=http://host.docker.internal:1234/openid/userinfo
       - CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR=id
-      - CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR=username
+      - CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR=email
       - CMD_OAUTH2_USER_PROFILE_EMAIL_ATTR=email
       - CMD_OAUTH2_TOKEN_URL=http://host.docker.internal:1234/openid/token
       - CMD_OAUTH2_AUTHORIZATION_URL=http://localhost:1234/openid/authorize
       - CMD_OAUTH2_CLIENT_ID=xxxxxxx
       - CMD_OAUTH2_CLIENT_SECRET=xxxxxxxx
+      - CMD_OAUTH2_SCOPE=openid profile email
       - NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
