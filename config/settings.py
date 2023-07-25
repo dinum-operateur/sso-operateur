@@ -158,3 +158,5 @@ CSP_STYLE_SRC = "'self' 'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8=' 's
 CSP_IMG_SRC = "'self' data:"
 
 REFERRER_POLICY = "same-origin"
+
+ADMIN_URL = os.getenv("ADMIN_URL")
