@@ -81,13 +81,14 @@ python manage.py test
 
 D'abord, rendez-vous dans l'admin Django, section OpenID Connect Provider, pour créer un Client avec les caractéristiques suivantes : 
 
+- owner : l'id d'un user existant
 - client type : confidential
 - Response type : code
 - Redirect URIs : une URL par ligne. Pour le pad `http://localhost:3000/auth/oauth2/callback`.
 - JWT algorithm : RS256
 - Scopes : `openid email profile`
 
-Sauvegardez, puis notez le client ID + le client secret que vous donne la page.
+Sauvegardez, puis notez le client ID + le client secret disponible dans l'objet que vous venez de créer.
 
 Exemple de configuration Docker-compose pour que le pad discute avec votre sso-operateur (:warning: complétez `CMD_OAUTH2_CLIENT_ID` et `CMD_OAUTH2_CLIENT_SECRET`) : 
 
