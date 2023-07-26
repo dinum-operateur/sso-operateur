@@ -167,3 +167,4 @@ ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+OIDC_AFTER_USERLOGIN_HOOK = "sso.hooks.do_autologin_after_successful_login"

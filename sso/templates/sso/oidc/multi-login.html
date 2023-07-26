@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+AH QUE COUCOU
+
+<p>{{uri}}</p>
+<ul>
+{% for client in other_autologin_clients %}
+<li>{{ client.id }} {{ client.autologin_url }}</li>
+{% endfor %}
+</ul>
+{% endblock content %}
