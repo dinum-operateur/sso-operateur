@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-AH QUE COUCOU
 
-<p>{{uri}}</p>
-<ul>
-{% for client in other_autologin_clients %}
-<li>{{ client.id }} {{ client.autologin_url }}</li>
-{% endfor %}
-</ul>
+    <h1>Connexion en cours...</h1>
+
+    <form action="{{ uri }}" method="get" id="redirectionform">
+        <p>
+            Si vous n'êtes pas redirigé(e) vers l'application d'ici quelques secondes,
+            cliquez sur le bouton ci-dessous.
+        </p>
+        <p>
+            <button class="fr-btn" type="submit">
+                Retourner sur le service
+            </button>
+        </p>
+    </form>
+    {% for client in other_autologin_clients %}
+        <iframe src="{{ client.autologin_url }}" width="10" height="10"></iframe>
+    {% endfor %}
 {% endblock content %}
+
+{% block extra_js %}
+    <script>
+        setTimeout(function () {
+            document.getElementById("redirectionform").submit();
+        }, 3000);
+    </script>
+{% endblock %}
