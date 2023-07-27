@@ -159,4 +159,4 @@ CSP_IMG_SRC = "'self' data:"
 
 REFERRER_POLICY = "same-origin"
 
-ADMIN_URL = os.getenv("ADMIN_URL")
+ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
