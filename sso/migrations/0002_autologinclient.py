@@ -6,10 +6,6 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        (
-            "oidc_provider",
-            "0027_alter_client_id_alter_code_id_alter_responsetype_id_and_more",
-        ),
         ("sso", "0001_initial"),
     ]
 
