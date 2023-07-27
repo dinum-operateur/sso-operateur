@@ -77,7 +77,23 @@ pre-commit run --all-files
 python manage.py test
 ```
 
+### Initialisation de données de fonctionnement
+
+Créez un utilisateur administrateur 🫅 (_superuser_) :
+
+```
+python manage.py createsuperuser
+```
+
+Et aussi, créez une clé RSA 🔑 pour le bon fonctionnement du module oidc_provider :
+
+```
+python manage.py creatersakey
+```
+
 ## Configurer un client OIDC
+
+### Installation
 
 D'abord, rendez-vous dans l'admin Django, section OpenID Connect Provider, pour créer un Client avec les caractéristiques suivantes : 
 
@@ -87,6 +103,7 @@ D'abord, rendez-vous dans l'admin Django, section OpenID Connect Provider, pour 
 - Redirect URIs : une URL par ligne. Pour le pad `http://localhost:3000/auth/oauth2/callback`.
 - JWT algorithm : RS256
 - Scopes : `openid email profile`
+- Require consent : peut être activé dans un premier temps pour bien voir le processus, mais il faudra le désactiver pour l'auto-login
 
 Sauvegardez, puis notez le client ID + le client secret disponible dans l'objet que vous venez de créer.
 
@@ -114,3 +131,9 @@ services:
       - CMD_OAUTH2_SCOPE=openid profile email
       - NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
+### Utilisation
+
+- Connectez-vous à l'admin Django avec votre super user : cela ouvre une session Django qui est aussi valable pour le module oidc provider.
+- Sur le pad, cliquez sur "se connecter"
+- Comme il n'y a pas besoin de login, vous êtes redirigé·e vers la page de demande de consentement si elle a été activée.
+- Et une fois que le consentement a été donné, vous êtes redirigé·e vers le pad, dorénavant connecté·e avec le même identifiant que votre super admin Django.
