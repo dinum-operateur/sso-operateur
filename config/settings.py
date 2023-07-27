@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "oidc_provider",
     "dsfr",
     "sso",
 ]
@@ -160,3 +161,7 @@ CSP_IMG_SRC = "'self' data:"
 REFERRER_POLICY = "same-origin"
 
 ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
+
+# OIDC provider options
+
+LOGIN_URL = "/accounts/login/"
