@@ -76,3 +76,39 @@ pre-commit run --all-files
 ```bash
 python manage.py test
 ```
+
+## Configurer un client OIDC
+
+D'abord, rendez-vous dans l'admin Django, section OpenID Connect Provider, pour créer un Client avec les caractéristiques suivantes : 
+
+- client type : confidential
+- Response type : code
+- Redirect URIs : une URL par ligne. Pour le pad `http://localhost:3000/auth/oauth2/callback`.
+- JWT algorithm : RS256
+- Scopes : `openid email profile`
+
+Sauvegardez, puis notez le client ID + le client secret que vous donne la page.
+
+Exemple de configuration Docker-compose pour que le pad discute avec votre sso-operateur (:warning: complétez le client ID et le client secret) : 
+
+```yaml
+version: '3'
+services:
+  app:
+    image: betagouv-hedgedoc
+    build: .
+    environment:
+      - CMD_DB_URL=postgres://hedgedoc:password@db:5432/hedgedoc
+      - CMD_DOMAIN=localhost
+      - CMD_URL_ADDPORT=true
+      - CMD_OAUTH2_BASEURL=http://localhost:1234
+      - CMD_OAUTH2_USER_PROFILE_URL=http://host.docker.internal:1234/openid/userinfo
+      - CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR=id
+      - CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR=username
+      - CMD_OAUTH2_USER_PROFILE_EMAIL_ATTR=email
+      - CMD_OAUTH2_TOKEN_URL=http://host.docker.internal:1234/openid/token
+      - CMD_OAUTH2_AUTHORIZATION_URL=http://localhost:1234/openid/authorize
+      - CMD_OAUTH2_CLIENT_ID=xxxxxxx
+      - CMD_OAUTH2_CLIENT_SECRET=xxxxxxxx
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+```
