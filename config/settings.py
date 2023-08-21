@@ -162,6 +162,8 @@ REFERRER_POLICY = "same-origin"
 
 ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
 
-# OIDC provider options
+# LOGIN and OIDC provider options
 
 LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
