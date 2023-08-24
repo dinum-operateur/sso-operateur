@@ -9,6 +9,25 @@ Renseigner `CMD_OAUTH2_CLIENT_ID` et `CMD_OAUTH2_CLIENT_SECRET` récupérés dep
 
 Dans le dossier du pad, lancer docker avec `docker compose up`.
 
+## Lancer outline via outline-docker-compose
+
+Pour installer outline en local : 
+- si ce n'est pas déjà le cas, installez docker et docker-compose 
+- suivez les instructions d'installation disponible ici https://github.com/vicalloy/outline-docker-compose 
+
+Changez la configuration du server oidc : 
+- ajoutez un nouveau client dans l'admin django du sso, en précisant `http://127.0.0.1:8888/auth/oidc.callback` comme url de redirection
+- modifier "env.oidc" comme suit :
+```
+OIDC_CLIENT_ID=<l'id généré dans l'admin de sso>
+OIDC_CLIENT_SECRET=<la clé généré dans l'admin de sso>
+OIDC_AUTH_URI=http://localhost:8000/openid/authorize
+OIDC_TOKEN_URI=http://host.docker.internal:8000/openid/token
+OIDC_USERINFO_URI=http://host.docker.internal:8000/openid/userinfo
+```
+
+Lancez votre container avec `make start` pour lancer le docker-compose.
+
 ## Test manuel du flux OIDC 
 
 Il peut être utile de lancer manuellement les requêtes du flux OIDC pour tester ou pour y voir plus clair.
