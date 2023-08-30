@@ -16,10 +16,14 @@ def do_autologin_after_successful_login(request, user, client):
 
     other_autologin_clients = AutologinClient.objects.exclude(oidc_client=client)
     if other_autologin_clients.exists():
-        return render(
+        response = render(
             request,
             "sso/oidc/multi-login.html",
             {"uri": redirect_uri, "other_autologin_clients": other_autologin_clients},
         )
+        response._csp_update = {
+            "frame-src": " ".join(c.autologin_url for c in other_autologin_clients)
+        }
+        return response
 
     return None
