@@ -30,6 +30,6 @@ def view_multilogin(request):
     )
     # allow all clients to be displayed in iframes
     response._csp_update = {
-        "frame-src": " ".join(c.autologin_url for c in autologin_clients)
+        "frame-src": "'self' " + " ".join(c.autologin_url for c in autologin_clients)
     }
     return response
