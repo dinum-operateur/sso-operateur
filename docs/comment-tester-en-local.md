@@ -1,8 +1,38 @@
 # Comment tester en local
 
+## Lancer le pad en local via docker
+
+`git clone https://github.com/betagouv/pad.numerique.gouv.fr.git`
+
+Copier le docker-compose-pad.yaml.example de docs dans le dossier du pad
+Renseigner `CMD_OAUTH2_CLIENT_ID` et `CMD_OAUTH2_CLIENT_SECRET` récupérés depuis Django admin. 
+
+Dans le dossier du pad, lancer docker avec `docker compose up`.
+
+## Lancer outline via outline-docker-compose
+
+Pour installer outline en local : 
+- si ce n'est pas déjà le cas, installez docker et docker-compose 
+- suivez les instructions d'installation disponible ici https://github.com/vicalloy/outline-docker-compose 
+
+Changez la configuration du server oidc : 
+- ajoutez un nouveau client dans l'admin django du sso, en précisant `http://127.0.0.1:8888/auth/oidc.callback` comme url de redirection
+- modifier "env.oidc" comme suit :
+```
+OIDC_CLIENT_ID=<l'id généré dans l'admin de sso>
+OIDC_CLIENT_SECRET=<la clé généré dans l'admin de sso>
+OIDC_AUTH_URI=http://localhost:8000/openid/authorize
+OIDC_TOKEN_URI=http://host.docker.internal:8000/openid/token
+OIDC_USERINFO_URI=http://host.docker.internal:8000/openid/userinfo
+```
+
+Lancez votre container avec `make start` pour lancer le docker-compose.
+
+## Test manuel du flux OIDC 
+
 Il peut être utile de lancer manuellement les requêtes du flux OIDC pour tester ou pour y voir plus clair.
 
-## Endpoint "authorize"
+### Endpoint "authorize"
 
 C'est le point d'interface vers lequelle le service redirige l'usager afin de lui demander l'autorisation d'utiliser ses données (et pour l'authentifier, aussi).
 
@@ -19,7 +49,7 @@ Le paramètre `response_type`, quant à lui, vaut toujours `code`.
 
 :warning: Après avoir authentifié votre usager, vous pouvez récupérer le `code` dans l'URL vers laquelle vous redirige le navigateur.
 
-## Endpoint `token`
+### Endpoint `token`
 
 Celui-ci est normalement un appel serveur-à-serveur, il permet au service de récupérer un jetons d'accès aux infos de l'usager.
 

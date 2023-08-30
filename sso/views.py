@@ -7,3 +7,7 @@ def view_index(request):
 
 def view_accessibilite(request):
     return render(request, "sso/accessibilite.html")
+
+
+def view_multilogin(request):
+    return render(request, "sso/oidc/multi-login.html")

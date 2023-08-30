@@ -119,15 +119,15 @@ services:
       - CMD_DB_URL=postgres://hedgedoc:password@db:5432/hedgedoc
       - CMD_DOMAIN=localhost
       - CMD_URL_ADDPORT=true
-      - CMD_OAUTH2_BASEURL=http://localhost:1234
-      - CMD_OAUTH2_USER_PROFILE_URL=http://host.docker.internal:1234/openid/userinfo
-      - CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR=id
+      - CMD_OAUTH2_BASEURL=http://localhost:8000
+      - CMD_OAUTH2_USER_PROFILE_URL=http://host.docker.internal:8000/openid/userinfo
+      - CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR=preferred_username
       - CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR=email
       - CMD_OAUTH2_USER_PROFILE_EMAIL_ATTR=email
-      - CMD_OAUTH2_TOKEN_URL=http://host.docker.internal:1234/openid/token
-      - CMD_OAUTH2_AUTHORIZATION_URL=http://localhost:1234/openid/authorize
+      - CMD_OAUTH2_TOKEN_URL=http://host.docker.internal:8000/openid/token
+      - CMD_OAUTH2_AUTHORIZATION_URL=http://localhost:8000/openid/authorize
       - CMD_OAUTH2_CLIENT_ID=xxxxxxx
-      - CMD_OAUTH2_CLIENT_SECRET=xxxxxxxx
+      - CMD_OAUTH2_CLIENT_SECRET=xxxxxxx
       - CMD_OAUTH2_SCOPE=openid profile email
       - NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
