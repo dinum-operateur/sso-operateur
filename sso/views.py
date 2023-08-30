@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from sso.models import AutologinClient
@@ -11,6 +12,7 @@ def view_accessibilite(request):
     return render(request, "sso/accessibilite.html")
 
 
+@login_required
 def view_multilogin(request):
     """
     View to log in all oidc autologin clients at once.
