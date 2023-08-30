@@ -24,7 +24,8 @@ def do_autologin_after_successful_login(request, user, client):
         )
         # allow all needed clients to be displayed in iframes!
         response._csp_update = {
-            "frame-src": " ".join(c.autologin_url for c in other_autologin_clients)
+            "frame-src": "'self' "
+            + " ".join(c.autologin_url for c in other_autologin_clients)
         }
         return response
 
