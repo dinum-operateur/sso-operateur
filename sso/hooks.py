@@ -8,6 +8,7 @@ def do_autologin_after_successful_login(request, user, client):
     if request.session.get("autologin_initiated", False):
         return None
 
+    # mandatory to avoid endless Loop
     request.session["autologin_initiated"] = True
 
     authorize = AuthorizeEndpoint(request)
@@ -16,10 +17,16 @@ def do_autologin_after_successful_login(request, user, client):
 
     other_autologin_clients = AutologinClient.objects.exclude(oidc_client=client)
     if other_autologin_clients.exists():
-        return render(
+        response = render(
             request,
             "sso/oidc/multi-login.html",
             {"uri": redirect_uri, "other_autologin_clients": other_autologin_clients},
         )
+        # allow all needed clients to be displayed in iframes!
+        response._csp_update = {
+            "frame-src": "'self' "
+            + " ".join(c.autologin_url for c in other_autologin_clients)
+        }
+        return response
 
     return None
