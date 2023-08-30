@@ -21,5 +21,7 @@ from config.settings import ADMIN_URL
 urlpatterns = [
     path(ADMIN_URL, admin.site.urls),
     path("openid/", include("oidc_provider.urls", namespace="oidc_provider")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("oidc/", include("mozilla_django_oidc.urls")),
     path("", include("sso.urls")),
 ]
