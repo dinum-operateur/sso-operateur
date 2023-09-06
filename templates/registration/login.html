@@ -10,17 +10,18 @@
             <input type="submit" value="logout">
         </form>
     {% else %}      
-        <a href="{% url 'oidc_authentication_init' %}">
+        <form action="{% url 'oidc_authentication_init' %}" method="get">
             <div class="fr-connect-group">
-                <button class="fr-connect">
+                <button type="submit" class="fr-connect">
                     <span class="fr-connect__login">S’identifier avec</span>
                     <span class="fr-connect__brand">MonComptePro</span>
                 </button>
+                <input type="hidden" name="next" value="{{ next }}">
                 <p>
-                    <a href="https://moncomptepro.beta.gouv.fr/" target="_blank"  rel="noopener" title="Qu’est-ce que FranceConnect ? - nouvelle fenêtre">Qu’est-ce que MonComptePro ?</a>
+                    <a href="https://moncomptepro.beta.gouv.fr/" target="_blank"  rel="noopener" title="Qu’est-ce que Mon compte pro ? - nouvelle fenêtre">Qu’est-ce que MonComptePro ?</a>
                 </p>
             </div>
-        </a>
+        </form>
     {% endif %}
 
 
