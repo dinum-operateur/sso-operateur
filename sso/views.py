@@ -57,8 +57,3 @@ def view_login(request):
         "registration/login.html",
         {"user": request.user, "next": sanitize_next_url_value(request)},
     )
-
-
-def view_logout(request):
-    """TODO"""
-    return render(request, "registration/login.html", {"user": request.user})
