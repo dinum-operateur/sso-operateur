@@ -167,8 +167,10 @@ REFERRER_POLICY = "same-origin"
 ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
 
 # LOGIN and OIDC provider options
-AUTHENTICATION_BACKENDS = ("mozilla_django_oidc.auth.OIDCAuthenticationBackend",)
-
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "mozilla_django_oidc.auth.OIDCAuthenticationBackend",
+)
 OIDC_RP_CLIENT_ID = os.environ["OIDC_RP_CLIENT_ID"]
 OIDC_RP_CLIENT_SECRET = os.environ["OIDC_RP_CLIENT_SECRET"]
 OIDC_OP_AUTHORIZATION_ENDPOINT = os.environ["OIDC_OP_AUTHORIZATION_ENDPOINT"]
