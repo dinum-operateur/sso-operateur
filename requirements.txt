@@ -11,3 +11,4 @@ gunicorn==20.1.0
 whitenoise==6.4.0
 django-oidc-provider==0.8.0
 django-dsfr==0.13.1
+mozilla-django-oidc==3.0.0

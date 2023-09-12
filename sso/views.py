@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from sso.models import AutologinClient
 
@@ -33,3 +34,26 @@ def view_multilogin(request):
         "frame-src": "'self' " + " ".join(c.autologin_url for c in autologin_clients)
     }
     return response
+
+
+def sanitize_next_url_value(request):
+    next = request.POST.get("next", request.GET.get("next"))
+
+    if not url_has_allowed_host_and_scheme(
+        url=next,
+        allowed_hosts={
+            request.get_host(),
+        },
+        require_https=request.is_secure(),
+    ):
+        return ""
+
+    return next
+
+
+def view_login(request):
+    return render(
+        request,
+        "registration/login.html",
+        {"user": request.user, "next": sanitize_next_url_value(request)},
+    )

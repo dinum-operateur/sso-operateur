@@ -29,6 +29,12 @@ class TestStaticPages(TestCase):
         response = self.client.get("/accessibilite/")
         self.assertContains(response, "Déclaration d’accessibilité")
 
+    def test_login_page_is_not_broken(self):
+        response = self.client.get("/accounts/login/")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Connexion")
+        self.assertTemplateUsed(response, "registration/login.html")
+
 
 class TestDSFR(TestCase):
     def test_dsfr_is_correctly_loaded(self):
