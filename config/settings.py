@@ -169,7 +169,7 @@ ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
 # LOGIN and OIDC provider options
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
-    "mozilla_django_oidc.auth.OIDCAuthenticationBackend",
+    "sso.auth.OpiOidcAuthenticationBackend",
 )
 OIDC_RP_CLIENT_ID = os.environ["OIDC_RP_CLIENT_ID"]
 OIDC_RP_CLIENT_SECRET = os.environ["OIDC_RP_CLIENT_SECRET"]
@@ -178,6 +178,7 @@ OIDC_OP_TOKEN_ENDPOINT = os.environ["OIDC_OP_TOKEN_ENDPOINT"]
 OIDC_OP_USER_ENDPOINT = os.environ["OIDC_OP_USER_ENDPOINT"]
 OIDC_RP_SIGN_ALGO = "RS256"
 OIDC_OP_JWKS_ENDPOINT = os.environ["OIDC_OP_JWKS_ENDPOINT"]
+OIDC_RP_SCOPES = os.environ["OIDC_RP_SCOPES"]
 
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/oidc/multi-login/"
