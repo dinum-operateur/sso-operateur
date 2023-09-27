@@ -1,4 +1,4 @@
-name: Build
+name: Sonarqube
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Sonarqube scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
