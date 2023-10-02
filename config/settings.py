@@ -156,11 +156,17 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
 CSP_DEFAULT_SRC = "'self'"
-CSP_STYLE_SRC = "'self' 'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8=' 'sha256-d//Lck7pNf/OY9MPfGYaIOTmqjEzvwlSukK3UObI08A=' 'sha256-28J4mQEy4Sqd0R+nZ89dOl9euh+Y3XvT+VfXD5pOiOE='"
+CSP_STYLE_SRC = (
+    "'self'",
+    "'sha256-Eyt3MCqJJqqqUJzUlVq9BLYX+kVGQZVLpJ4toZz4mb8='",
+    "'sha256-d//Lck7pNf/OY9MPfGYaIOTmqjEzvwlSukK3UObI08A='",
+    "'sha256-28J4mQEy4Sqd0R+nZ89dOl9euh+Y3XvT+VfXD5pOiOE='",
+)
 CSP_IMG_SRC = "'self' data:"
 CSP_SCRIPT_SRC = [
     "'self'",
     "'sha256-a28Komkyw2vnuwMdBLFFY3y1uJCXIFk2nAOcCqEWkf4='",  # sso/templates/sso/oidc/multi-login.html
+    "'sha256-clj2y3uU8vgOElks1xzuZ4AMo04erou4FAxsbT9OCas='",  # templates/registration/login.html
 ]
 REFERRER_POLICY = "same-origin"
 
