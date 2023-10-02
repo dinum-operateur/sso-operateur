@@ -9,21 +9,28 @@
             {% csrf_token %}
             <input type="submit" value="logout">
         </form>
-    {% else %}      
-        <form action="{% url 'oidc_authentication_init' %}" method="get">
+    {% else %}
+        <form action="{% url 'oidc_authentication_init' %}" method="get" id="init_oidc_form">
             <div class="fr-connect-group">
+                <p>Vous allez vous connecter à la suite numérique avec MonComptePro.</p>
+                <p>Si rien ne se passe, cliquez sur le bouton :</p>
                 <button type="submit" class="fr-connect">
                     <span class="fr-connect__login">S’identifier avec</span>
                     <span class="fr-connect__brand">MonComptePro</span>
                 </button>
                 <input type="hidden" name="next" value="{{ next }}">
                 <p>
-                    <a href="https://moncomptepro.beta.gouv.fr/" target="_blank"  rel="noopener" title="Qu’est-ce que Mon compte pro ? - nouvelle fenêtre">Qu’est-ce que MonComptePro ?</a>
+                    <a href="https://moncomptepro.beta.gouv.fr/" target="_blank" rel="noopener"
+                       title="Qu’est-ce que Mon compte pro ? - nouvelle fenêtre">Qu’est-ce que MonComptePro ?</a>
                 </p>
             </div>
         </form>
     {% endif %}
-
-
-    
+{% endblock %}
+{% block extra_js %}
+    <script>
+        setTimeout(function () {
+            document.getElementById("init_oidc_form").submit();
+        }, 0);
+    </script>
 {% endblock %}

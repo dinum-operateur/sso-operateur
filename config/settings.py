@@ -166,6 +166,7 @@ CSP_IMG_SRC = "'self' data:"
 CSP_SCRIPT_SRC = [
     "'self'",
     "'sha256-a28Komkyw2vnuwMdBLFFY3y1uJCXIFk2nAOcCqEWkf4='",  # sso/templates/sso/oidc/multi-login.html
+    "'sha256-clj2y3uU8vgOElks1xzuZ4AMo04erou4FAxsbT9OCas='",  # templates/registration/login.html
 ]
 REFERRER_POLICY = "same-origin"
 
