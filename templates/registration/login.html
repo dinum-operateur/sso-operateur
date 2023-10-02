@@ -11,9 +11,11 @@
         </form>
     {% else %}
         <form action="{% url 'oidc_authentication_init' %}" method="get" id="init_oidc_form">
+            <p>
+                Vous allez vous connecter à la suite numérique avec MonComptePro.<br>
+                Si rien ne se passe, cliquez sur le bouton :
+            </p>
             <div class="fr-connect-group">
-                <p>Vous allez vous connecter à la suite numérique avec MonComptePro.</p>
-                <p>Si rien ne se passe, cliquez sur le bouton :</p>
                 <button type="submit" class="fr-connect">
                     <span class="fr-connect__login">S’identifier avec</span>
                     <span class="fr-connect__brand">MonComptePro</span>
