@@ -4,10 +4,10 @@
 
     <h1>Connexion</h1>
     {% if user.is_authenticated %}
-        <p>Current user: {{ user.email }}</p>
+        <p>Vous êtes déjà connecté(e) avec l'e-mail : {{ user.email }}</p>
         <form action="{% url 'oidc_logout' %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="logout">
+            <button class="fr-btn" type="submit" value="logout">Se déconnecter</button>
         </form>
     {% else %}
         <form action="{% url 'oidc_authentication_init' %}" method="get" id="init_oidc_form">
