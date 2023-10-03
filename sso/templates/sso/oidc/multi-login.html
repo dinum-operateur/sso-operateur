@@ -16,7 +16,7 @@
         </p>
     </form>
     {% for client in other_autologin_clients %}
-        <iframe src="{{ client.autologin_url }}" width="10" height="10"></iframe>
+        <iframe src="{{ client.autologin_url }}" width="10" height="10" title="iframe-connexion-{{ client.oidc_client.name }}"></iframe>
     {% endfor %}
 {% endblock content %}
 
