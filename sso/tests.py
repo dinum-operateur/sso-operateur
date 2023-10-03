@@ -45,5 +45,4 @@ class TestDSFR(TestCase):
         self.assertTemplateUsed(response, "dsfr/skiplinks.html")
         self.assertTemplateUsed(response, "dsfr/header.html")
         self.assertTemplateUsed(response, "dsfr/theme_modale.html")
-        self.assertTemplateUsed(response, "dsfr/breadcrumb.html")
         self.assertTemplateUsed(response, "dsfr/global_js.html")

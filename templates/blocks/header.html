@@ -1,5 +1,5 @@
 {% extends "dsfr/header.html" %}
-{% load dsfr_tags %}
+
 {% block service_title %}
 <a href="/" title="Accueil — {{ SITE_CONFIG.site_title }}">
     <p class="fr-header__service-title">{{ SITE_CONFIG.site_title }}</p>
@@ -36,9 +36,6 @@
 {# endblock burger_menu #}
 
 {% block main_menu %}
-    <div class="fr-container">
-        {% dsfr_alert type="info" title="Avertissement" content="Ce service est encore en cours de test." %}
-    </div>
     <div class="fr-header__menu fr-modal" id="fr-menu-mobile" aria-labelledby="fr-btn-menu-mobile">
       <div class="fr-container">
         <button type="button" class="fr-btn--close fr-btn" aria-controls="fr-menu-mobile">Fermer</button>

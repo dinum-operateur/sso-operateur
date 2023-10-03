@@ -28,9 +28,11 @@
     {% include "blocks/header.html" %}
     {% dsfr_theme_modale %}
 
-    <div class="fr-container fr-mt-4w fr-mb-6w">
-      {% dsfr_breadcrumb %}
+    <div class="fr-container">
+        {% dsfr_alert type="info" title="Avertissement" content="Ce service est encore en cours de test." %}
+      </div>
 
+    <div class="fr-container fr-mt-4w fr-mb-6w">
       <main id="content" role="main">
         {% block content %}{% endblock content %}
       </main>
