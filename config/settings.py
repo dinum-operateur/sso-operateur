@@ -192,3 +192,32 @@ LOGOUT_REDIRECT_URL = "/"
 
 OIDC_AFTER_USERLOGIN_HOOK = "sso.hooks.do_autologin_after_successful_login"
 OIDC_USERINFO = "config.oidc_provider_settings.userinfo"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "infofile": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "info.log",
+            "formatter": "verbose",
+        }
+    },
+    "loggers": {
+        "": {
+            "level": "INFO",
+            "handlers": ["infofile"],
+        }
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {name} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+}
