@@ -6,7 +6,6 @@ from oidc_provider.lib.endpoints.authorize import AuthorizeEndpoint
 from sso.models import AutologinClient
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
 
 def do_autologin_after_successful_login(request, user, client):
