@@ -187,7 +187,7 @@ OIDC_OP_JWKS_ENDPOINT = os.environ["OIDC_OP_JWKS_ENDPOINT"]
 OIDC_RP_SCOPES = os.environ["OIDC_RP_SCOPES"]
 
 LOGIN_URL = "/accounts/login/"
-LOGIN_REDIRECT_URL = "/oidc/multi-login/"
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 OIDC_AFTER_USERLOGIN_HOOK = "sso.hooks.do_autologin_after_successful_login"
