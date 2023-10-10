@@ -1,10 +1,16 @@
+import logging
+
 from django.shortcuts import render
 from oidc_provider.lib.endpoints.authorize import AuthorizeEndpoint
+from oidc_provider.models import Client as OidcClient
 
 from sso.models import AutologinClient
 
+logger = logging.getLogger(__name__)
 
-def do_autologin_after_successful_login(request, user, client):
+
+def do_autologin_after_successful_login(request, user, client: OidcClient):
+    logger.info(f"user.login [user:{str(user)}] [service:{client.name}]")
     if request.session.get("autologin_initiated", False):
         return None
 

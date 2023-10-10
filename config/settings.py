@@ -192,3 +192,28 @@ LOGOUT_REDIRECT_URL = "/"
 
 OIDC_AFTER_USERLOGIN_HOOK = "sso.hooks.do_autologin_after_successful_login"
 OIDC_USERINFO = "config.oidc_provider_settings.userinfo"
+
+LOG_LEVEL = "DEBUG" if DEBUG else "INFO"
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "infoconsole": {
+            "level": LOG_LEVEL,
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "": {
+            "level": LOG_LEVEL,
+            "handlers": ["infoconsole"],
+        }
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {name} {message}",
+            "style": "{",
+        },
+    },
+}
