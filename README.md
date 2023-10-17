@@ -131,6 +131,12 @@ services:
       - CMD_OAUTH2_SCOPE=openid profile email
       - NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
+
+### Ajout de la clé RSA
+
+Il faut également ajouter une clé RSA au moyen de la commande suivante : 
+`python manage.py creatersakey`
+
 ### Utilisation
 
 - Connectez-vous à l'admin Django avec votre super user : cela ouvre une session Django qui est aussi valable pour le module oidc provider.
